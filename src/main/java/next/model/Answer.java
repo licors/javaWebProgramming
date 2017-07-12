@@ -6,18 +6,23 @@ public class Answer {
 	private long answerId;
 	private String writer;
 	private String contents;
-	private Date timestamp;
+	private Date createdDate;
 	private long questionId;
 
-	public Answer(long answerId, String writer, String contents, Date timestamp, long questionId) {
+	public Answer(long answerId, String writer, String contents, Date createdDate, long questionId) {
 		super();
 		this.answerId = answerId;
 		this.writer = writer;
 		this.contents = contents;
-		this.timestamp = timestamp;
+		this.createdDate = createdDate;
 		this.questionId = questionId;
 	}
 	
+	public Answer(String writer, String contents, long questionId) {
+		// TODO Auto-generated constructor stub
+		this(0,writer,contents,new Date(), questionId);
+	}
+
 	public long getAnswerId() {
 		return answerId;
 	}
@@ -27,16 +32,20 @@ public class Answer {
 	public String getContents() {
 		return contents;
 	}
-	public Date getTimestamp() {
-		return timestamp;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 	public long getQuestionId() {
 		return questionId;
 	}
+	public Long getTimeFromCreateDate() {
+		// TODO Auto-generated method stub
+		return this.createdDate.getTime();
+	}
 	@Override
 	public String toString() {
 		return "Answer [answerId=" + answerId + ", writer=" + writer + ", contents=" + contents + ", timestamp="
-				+ timestamp + ", questionId=" + questionId + "]";
+				+ createdDate + ", questionId=" + questionId + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -45,7 +54,7 @@ public class Answer {
 		result = prime * result + (int) (answerId ^ (answerId >>> 32));
 		result = prime * result + ((contents == null) ? 0 : contents.hashCode());
 		result = prime * result + (int) (questionId ^ (questionId >>> 32));
-		result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
+		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
 		result = prime * result + ((writer == null) ? 0 : writer.hashCode());
 		return result;
 	}
@@ -67,10 +76,10 @@ public class Answer {
 			return false;
 		if (questionId != other.questionId)
 			return false;
-		if (timestamp == null) {
-			if (other.timestamp != null)
+		if (createdDate == null) {
+			if (other.createdDate != null)
 				return false;
-		} else if (!timestamp.equals(other.timestamp))
+		} else if (!createdDate.equals(other.createdDate))
 			return false;
 		if (writer == null) {
 			if (other.writer != null)
